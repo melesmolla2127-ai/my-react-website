@@ -1,0 +1,147 @@
+/* ============================================================
+   DESIGN TOKENS — Black × Gold × Minimalism × Premium Technology
+   Every colour, radius, shadow and spacing step used in the app
+   is declared here once. Light mode is a gold-on-ivory variant.
+   ============================================================ */
+
+:root {
+  color-scheme: dark;
+
+  /* Surfaces */
+  --bg-primary: #080808;
+  --bg-secondary: #101010;
+  --card-bg: #151515;
+  --surface-raised: #1c1c1c;
+  --glass-bg: rgba(21, 21, 21, 0.62);
+  --glass-bg-strong: rgba(12, 12, 12, 0.86);
+  /* Mobile nav panel needs a solid fill: page text must not read through it. */
+  --panel-bg: #0b0b0b;
+  --overlay-bg: rgba(4, 4, 4, 0.78);
+
+  /* Gold */
+  --gold: #d4af37;
+  --gold-bright: #f5d76e;
+  --gold-dark: #aa8529;
+  --gold-soft: rgba(212, 175, 55, 0.12);
+  --gold-mid: rgba(212, 175, 55, 0.24);
+  --gold-gradient: linear-gradient(135deg, #aa8529 0%, #f5d76e 52%, #d4af37 100%);
+  --gold-gradient-line: linear-gradient(90deg, #aa8529, #f5d76e, #d4af37);
+  --gold-ring: 0 0 0 1px rgba(212, 175, 55, 0.28);
+
+  /* Text */
+  --text-primary: #ffffff;
+  --text-secondary: #b8b8b8;
+  --text-muted: #8e8e8e; /* AA-safe for small copy */
+  --text-decor: #777777; /* decorative mono labels only */
+  --text-on-gold: #0a0a0a;
+
+  /* Lines */
+  --border-gold: rgba(212, 175, 55, 0.2);
+  --border-gold-strong: rgba(212, 175, 55, 0.46);
+  --border-hairline: rgba(255, 255, 255, 0.07);
+
+  /* Elevation */
+  --shadow-sm: 0 10px 26px -18px rgba(0, 0, 0, 0.9);
+  --shadow-card: 0 26px 60px -32px rgba(0, 0, 0, 0.92);
+  --shadow-lift: 0 34px 74px -30px rgba(0, 0, 0, 0.95);
+  --glow-gold: 0 0 34px -6px rgba(212, 175, 55, 0.34);
+  --glow-gold-soft: 0 0 46px -12px rgba(212, 175, 55, 0.22);
+
+  /* Status */
+  --success: #62d6a8;
+  --success-bg: rgba(98, 214, 168, 0.1);
+  --error: #f2766e;
+  --error-bg: rgba(242, 118, 110, 0.1);
+  --warning: #e9b44c;
+  --warning-bg: rgba(233, 180, 76, 0.1);
+  --info: #86b8ea;
+  --info-bg: rgba(134, 184, 234, 0.1);
+
+  /* Type */
+  --font-display: "Space Grotesk", "Manrope", system-ui, sans-serif;
+  --font-body: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+  --fs-hero: clamp(2.9rem, 8.4vw, 7rem);
+  --fs-section: clamp(2rem, 4.6vw, 4rem);
+  --fs-heading: clamp(1.15rem, 1.6vw, 1.4rem);
+  --fs-body: clamp(0.9rem, 0.2vw + 0.85rem, 1rem);
+  --fs-small: clamp(0.8rem, 0.1vw + 0.76rem, 0.86rem);
+  --fs-micro: 0.68rem;
+
+  /* Space & shape */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 125px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  /* Layout */
+  --container: min(1180px, calc(100% - 80px));
+  --container-narrow: min(820px, calc(100% - 48px));
+  --nav-height: 76px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.2, 0.75, 0.25, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 0.18s;
+  --dur-base: 0.3s;
+  --dur-slow: 0.7s;
+}
+
+/* Gold-on-ivory: the same hierarchy, inverted ground. Gold tones are
+   darkened so body and label copy keeps WCAG AA contrast. */
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --bg-primary: #f8f5ec;
+  --bg-secondary: #f1eddf;
+  --card-bg: #fffdf7;
+  --surface-raised: #ffffff;
+  --glass-bg: rgba(255, 253, 247, 0.72);
+  --glass-bg-strong: rgba(250, 247, 238, 0.92);
+  --panel-bg: #f6f2e7;
+  --overlay-bg: rgba(48, 40, 18, 0.42);
+
+  --gold: #7a6017;
+  --gold-bright: #a88a2e;
+  --gold-dark: #5e4a10;
+  --gold-soft: rgba(122, 96, 23, 0.1);
+  --gold-mid: rgba(122, 96, 23, 0.22);
+  --gold-gradient: linear-gradient(135deg, #5e4a10 0%, #a88a2e 52%, #7a6017 100%);
+  --gold-gradient-line: linear-gradient(90deg, #5e4a10, #a88a2e, #7a6017);
+  --gold-ring: 0 0 0 1px rgba(122, 96, 23, 0.3);
+
+  --text-primary: #14120c;
+  --text-secondary: #4c4638;
+  --text-muted: #6b6558;
+  --text-decor: #8b8577;
+  --text-on-gold: #17130a;
+
+  --border-gold: rgba(122, 96, 23, 0.26);
+  --border-gold-strong: rgba(122, 96, 23, 0.5);
+  --border-hairline: rgba(24, 20, 8, 0.1);
+
+  --shadow-sm: 0 10px 24px -18px rgba(60, 46, 10, 0.4);
+  --shadow-card: 0 22px 48px -30px rgba(60, 46, 10, 0.38);
+  --shadow-lift: 0 30px 60px -28px rgba(60, 46, 10, 0.45);
+  --glow-gold: 0 0 30px -10px rgba(122, 96, 23, 0.34);
+  --glow-gold-soft: 0 0 40px -14px rgba(122, 96, 23, 0.24);
+
+  --success: #1c8a5d;
+  --success-bg: rgba(28, 138, 93, 0.1);
+  --error: #b53a33;
+  --error-bg: rgba(181, 58, 51, 0.09);
+  --warning: #8a6410;
+  --warning-bg: rgba(138, 100, 16, 0.1);
+  --info: #2b6395;
+  --info-bg: rgba(43, 99, 149, 0.1);
+}

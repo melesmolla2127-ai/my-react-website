@@ -1,0 +1,471 @@
+/* ============================================================
+   RESPONSIVE — 1920 down to 320
+   Order: wide desktops first, then laptop, tablet, mobile.
+   ============================================================ */
+
+/* Large desktops: more air, larger display type, wider container. */
+@media (min-width: 1441px) {
+  :root {
+    --container: min(1320px, calc(100% - 140px));
+    --fs-hero: clamp(6rem, 7.2vw, 8.4rem);
+    --fs-section: clamp(3.6rem, 4.4vw, 4.6rem);
+    --space-10: 150px;
+  }
+}
+
+/* Laptop / small desktop */
+@media (max-width: 1180px) {
+  :root {
+    --container: min(100%, calc(100% - 56px));
+  }
+
+  .about-grid,
+  .voices-layout {
+    gap: 56px;
+  }
+
+  .contact-grid {
+    gap: 44px;
+  }
+
+  .nav-links {
+    gap: var(--space-4);
+  }
+
+  .projects-grid,
+  .services-grid,
+  .journal-grid {
+    gap: 18px;
+  }
+
+  .floating-note {
+    right: -18px;
+  }
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .hero-side-note {
+    display: none;
+  }
+
+  .channel-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading-row {
+    gap: var(--space-5);
+  }
+
+  .skills-grid {
+    gap: var(--space-5) 32px;
+  }
+
+  .timeline::before {
+    left: 148px;
+  }
+
+  .timeline-item {
+    grid-template-columns: 128px 1fr;
+    gap: 40px;
+  }
+
+  .timeline-dot {
+    left: 143px;
+  }
+}
+
+/* Compact layout: single-column navigation and stacked grids. */
+@media (max-width: 850px) {
+  :root {
+    --container: min(760px, calc(100% - 44px));
+    --nav-height: 70px;
+    --space-10: 96px;
+  }
+
+  .nav-links,
+  .nav-actions .lang-select,
+  .nav-actions .nav-cta {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: grid;
+  }
+
+  .mobile-panel {
+    position: fixed;
+    inset: var(--nav-height) 0 auto;
+    z-index: 99;
+    display: block;
+    max-height: calc(100dvh - var(--nav-height));
+    overflow-y: auto;
+    padding: var(--space-6) 0 var(--space-7);
+    background: var(--panel-bg);
+    border-bottom: 1px solid var(--border-gold);
+    box-shadow: var(--shadow-lift);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-14px);
+    transition: opacity var(--dur-base) var(--ease), transform var(--dur-base) var(--ease-out),
+      visibility var(--dur-base) linear;
+  }
+
+  .mobile-panel.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .mobile-panel li {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+    transition-delay: calc(var(--i) * 45ms);
+  }
+
+  .mobile-panel.is-open li {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .mobile-panel a {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border-hairline);
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    transition: color var(--dur-fast) linear, padding-left var(--dur-base) var(--ease);
+  }
+
+  .mobile-panel a small {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.16em;
+    color: var(--text-decor);
+  }
+
+  .mobile-panel a:hover,
+  .mobile-panel a.is-active {
+    color: var(--gold-bright);
+    padding-left: 8px;
+  }
+
+  .about-grid,
+  .voices-layout,
+  .contact-grid,
+  .section-heading-row,
+  .contact-heading,
+  .soft-skills {
+    grid-template-columns: 1fr;
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .section-heading-row,
+  .contact-heading,
+  .soft-skills {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .projects-grid,
+  .services-grid,
+  .journal-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .education-row,
+  .form-grid {
+    gap: var(--space-4);
+  }
+
+  .about-visual {
+    max-width: 340px;
+  }
+
+  .quote-card blockquote {
+    font-size: clamp(1.2rem, 4.6vw, 1.5rem);
+  }
+
+  .newsletter {
+    grid-template-columns: 1fr;
+  }
+
+  .newsletter-note {
+    grid-column: 1;
+  }
+}
+
+/* Phones */
+@media (max-width: 620px) {
+  :root {
+    --container: calc(100% - 36px);
+    --fs-hero: clamp(3.1rem, 14vw, 4.6rem);
+    --fs-section: clamp(2rem, 9.6vw, 2.9rem);
+    --space-10: 76px;
+    --space-9: 60px;
+  }
+
+  .section-top {
+    margin-bottom: var(--space-6);
+  }
+
+  .hero-section {
+    padding-top: calc(var(--nav-height) + 40px);
+    padding-bottom: 70px;
+  }
+
+  .hero-kicker {
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+  }
+
+  .hero-bottom {
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  .hero-index {
+    display: none;
+  }
+
+  .hero-buttons {
+    gap: 10px;
+  }
+
+  /* Portrait crop, biased to the right so the busiest detail sits behind the
+     scrim rather than beside the copy. */
+  .hero-bg {
+    background-image: url("/images/hero-tech-mobile.jpg");
+    background-position: 66% center;
+  }
+
+  .hero-social {
+    justify-content: flex-start;
+  }
+
+  .channel-list {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-contact {
+    width: 100%;
+    margin-left: 0;
+    justify-content: space-between;
+  }
+
+  .btn {
+    min-height: 48px;
+    font-size: 0.82rem;
+  }
+
+  .btn-mini {
+    min-height: 40px;
+  }
+
+  .about-visual {
+    width: min(84%, 330px);
+    margin-inline: auto;
+  }
+
+  .floating-note {
+    right: -10px;
+    padding: 11px 13px;
+    font-size: 0.72rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    margin-top: var(--space-7);
+  }
+
+  .stat-item {
+    padding: var(--space-4) var(--space-3);
+    border-bottom: 1px solid var(--border-hairline);
+  }
+
+  .stat-item:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .stat-item:nth-child(2n + 1) {
+    padding-left: 0;
+  }
+
+  .stat-item:nth-child(n + 3) {
+    border-bottom: 0;
+  }
+
+  .projects-grid,
+  .services-grid,
+  .journal-grid,
+  .education-row,
+  .skills-grid,
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-desc,
+  .journal-desc,
+  .service-card p {
+    min-height: 0;
+  }
+
+  .skill-tabs {
+    overflow-x: auto;
+    padding-bottom: var(--space-4);
+    scrollbar-width: none;
+  }
+
+  .skill-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .skill-tab {
+    white-space: nowrap;
+    font-size: 0.76rem;
+    padding: 9px 12px;
+  }
+
+  .timeline::before {
+    left: 5px;
+  }
+
+  .timeline-item {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding-left: 28px;
+    padding-bottom: var(--space-6);
+  }
+
+  .timeline-dot {
+    left: 0;
+  }
+
+  .timeline-date {
+    text-align: left;
+  }
+
+  .edu-year {
+    writing-mode: horizontal-tb;
+  }
+
+  .contact-heading .section-title {
+    font-size: clamp(2.4rem, 13vw, 3.6rem);
+  }
+
+  .contact-form {
+    padding: var(--space-5) var(--space-4);
+  }
+
+  .footer-top {
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .footer-top .back-top {
+    margin-left: 0;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5) var(--space-4);
+    padding: var(--space-6) 0;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .toast-viewport {
+    top: auto;
+    bottom: calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
+    left: var(--space-4);
+    right: var(--space-4);
+    width: auto;
+  }
+
+  .back-to-top {
+    bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .project-modal {
+    padding: var(--space-5);
+  }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+  :root {
+    --container: calc(100% - 28px);
+  }
+
+  .hero-title {
+    font-size: clamp(2.6rem, 15vw, 3.4rem);
+  }
+
+  .hero-buttons .btn {
+    flex: 1 1 100%;
+  }
+
+  .section-aside,
+  .journal-cover-label {
+    display: none;
+  }
+
+  .brand-name {
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+  }
+
+  .stats-grid .stat-label {
+    font-size: 0.6rem;
+  }
+
+  .quote-card {
+    min-height: 0;
+  }
+
+  .mobile-panel a {
+    font-size: 1.35rem;
+  }
+}
+
+/* Touch devices never get the custom cursor or hover-only affordances. */
+@media (hover: none), (pointer: coarse) {
+  .cursor-ring,
+  .cursor-dot {
+    display: none !important;
+  }
+
+  .glass-card--tilt:hover {
+    transform: none;
+  }
+
+  .project-art-open {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Very wide, short screens (desktops with the window half-height). */
+@media (min-height: 400px) and (max-height: 700px) and (min-width: 851px) {
+  .hero-section {
+    min-height: auto;
+    padding-top: calc(var(--nav-height) + 56px);
+    padding-bottom: 64px;
+  }
+
+  .hero-bottom {
+    margin-top: var(--space-7);
+  }
+}

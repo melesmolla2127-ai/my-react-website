@@ -1,0 +1,281 @@
+/* ============================================================
+   ANIMATIONS — scroll reveals, entrances, ambient motion
+   ============================================================ */
+
+/* ---- Scroll-triggered reveals ----
+   Reveals use the independent `translate`/`scale` properties so they compose
+   with the `transform` that cards use for their 3D tilt and hover lift. */
+[data-reveal] {
+  opacity: 0;
+  translate: 0 26px;
+  transition: opacity var(--dur-slow) var(--ease-out), translate var(--dur-slow) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal="left"] {
+  translate: -26px 0;
+}
+
+[data-reveal="right"] {
+  translate: 26px 0;
+}
+
+[data-reveal="scale"] {
+  scale: 0.965;
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  translate: none;
+  scale: none;
+}
+
+/* ---- Hero entrance ---- */
+.animate-in {
+  opacity: 0;
+  transform: translateY(22px);
+  animation: rise 0.9s var(--ease-out) forwards;
+  animation-delay: var(--in-delay, 0ms);
+}
+
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes greet {
+  from {
+    opacity: 0;
+    transform: translateY(7px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes drift-down {
+  0%,
+  100% {
+    transform: translateY(-3px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+@keyframes bar-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 4px var(--gold-soft);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(212, 175, 55, 0.05);
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes orb-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-24px, 26px, 0);
+  }
+}
+
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* Slow cinematic push on the hero backdrop; scale only grows, so the cover
+   image can never expose an edge. */
+@keyframes hero-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+/* ---- Feedback states ---- */
+.spinner {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid rgba(10, 10, 10, 0.28);
+  border-top-color: #0a0a0a;
+  animation: spin 0.72s linear infinite;
+}
+
+.form-field.is-valid .field-status svg {
+  animation: pop-in 0.32s var(--ease-out) both;
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes toast-out {
+  to {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0) scale(0.97);
+  }
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---- Ambient detail motion ---- */
+.hero-orb {
+  animation: orb-drift 17s var(--ease) infinite;
+}
+
+.hero-orb--two {
+  animation-duration: 22s;
+  animation-direction: reverse;
+}
+
+.floating-note {
+  animation: float-slow 7s var(--ease) infinite;
+}
+
+.scroll-cue svg {
+  animation: drift-down 1.9s ease-in-out infinite;
+}
+
+.typing-caret {
+  animation: blink 1.05s steps(2) infinite;
+}
+
+.greeting-word {
+  animation: greet 0.38s var(--ease) both;
+}
+
+.skill-track > span {
+  transform-origin: left center;
+  animation: bar-fill 1.1s var(--ease-out) both;
+}
+
+/* ---- Reduced motion: everything resolves to its final state ---- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  [data-reveal],
+  .animate-in {
+    opacity: 1 !important;
+    translate: none !important;
+    scale: none !important;
+  }
+
+  .particle-canvas,
+  .cursor-ring,
+  .cursor-dot {
+    display: none !important;
+  }
+
+  .hero-orb,
+  .hero-bg,
+  .floating-note {
+    animation: none !important;
+  }
+
+  .hero-bg {
+    transform: none;
+  }
+
+  .btn::after {
+    display: none;
+  }
+}

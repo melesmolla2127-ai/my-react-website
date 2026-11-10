@@ -1,0 +1,302 @@
+/* ============================================================
+   CONTACT FORM — floating labels, gold focus, inline validation
+   ============================================================ */
+
+.contact-form {
+  padding: clamp(20px, 3vw, 34px);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(158deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.01)), var(--card-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-card);
+}
+
+.form-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-bottom: var(--space-4);
+  margin-bottom: var(--space-5);
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.form-heading h3 {
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  margin: 0;
+}
+
+.form-required,
+.form-step {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.14em;
+}
+
+.form-step {
+  color: var(--gold);
+}
+
+.form-required {
+  color: var(--text-muted);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4) var(--space-4);
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.form-field--full {
+  grid-column: 1 / -1;
+}
+
+.field-control {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+}
+
+.field-input {
+  width: 100%;
+  padding: 24px 42px 10px 15px;
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  outline: none;
+  transition: border-color var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease),
+    background-color var(--dur-base) var(--ease);
+}
+
+textarea.field-input {
+  min-height: 132px;
+  padding-top: 28px;
+  resize: vertical;
+}
+
+.field-input::placeholder {
+  color: transparent;
+}
+
+.field-input:hover {
+  border-color: var(--border-gold);
+}
+
+.field-input:focus {
+  border-color: var(--gold);
+  background: var(--bg-primary);
+  box-shadow: 0 0 0 3px var(--gold-soft), var(--glow-gold-soft);
+}
+
+/* Floating label sits on top of the control and lifts when filled. */
+.field-label {
+  position: absolute;
+  left: 15px;
+  top: 16px;
+  z-index: 1;
+  padding: 0 4px;
+  color: var(--text-muted);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  pointer-events: none;
+  transform-origin: left center;
+  transition: transform var(--dur-base) var(--ease), color var(--dur-base) var(--ease);
+}
+
+.field-input:focus ~ .field-label,
+.field-input:not(:placeholder-shown) ~ .field-label {
+  transform: translateY(-10px) scale(0.78);
+  color: var(--gold);
+}
+
+.field-label .req {
+  margin-left: 3px;
+  color: var(--gold-bright);
+}
+
+/* Optional selects keep a static label because they always hold a value. */
+.field-select {
+  padding: 0 42px 0 15px;
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--gold) 50%),
+    linear-gradient(135deg, var(--gold) 50%, transparent 50%);
+  background-position: calc(100% - 17px) 26px, calc(100% - 12px) 26px;
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
+}
+
+.field-select option {
+  background: var(--surface-raised);
+  color: var(--text-primary);
+}
+
+.field-static-label {
+  margin-bottom: 7px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.field-static-label .optional {
+  margin-left: 6px;
+  color: var(--text-decor);
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+.field-status {
+  position: absolute;
+  right: 14px;
+  top: 17px;
+  display: grid;
+  place-items: center;
+  color: var(--gold-bright);
+  pointer-events: none;
+}
+
+.field-select ~ .field-status {
+  top: 20px;
+}
+
+.form-field.is-valid .field-input {
+  border-color: var(--border-gold-strong);
+}
+
+.form-field.is-invalid .field-input {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px var(--error-bg);
+}
+
+.field-error {
+  margin: 0;
+  font-size: 0.76rem;
+  line-height: 1.5;
+  color: var(--error);
+}
+
+.field-hint {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: var(--text-decor);
+}
+
+.field-counter {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-decor);
+}
+
+.field-foot {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.submit-btn {
+  flex: 1 1 220px;
+}
+
+.reset-btn {
+  min-height: 50px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  transition: color var(--dur-base) var(--ease), background var(--dur-base) var(--ease);
+}
+
+.reset-btn:hover {
+  color: var(--gold-bright);
+  background: var(--gold-soft);
+}
+
+.form-privacy {
+  margin: var(--space-4) 0 0;
+  font-size: 0.72rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.form-summary {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px var(--space-3);
+  align-items: center;
+  margin-bottom: var(--space-5);
+  padding: 14px 16px;
+  border: 1px solid var(--border-gold-strong);
+  border-radius: var(--radius-md);
+  background: var(--success-bg);
+  animation: modal-in 0.45s var(--ease-out) both;
+}
+
+.form-summary__icon {
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--border-gold);
+  background: var(--card-bg);
+  color: var(--gold-bright);
+}
+
+.form-summary strong {
+  font-size: 0.92rem;
+  letter-spacing: -0.01em;
+}
+
+.form-summary p {
+  grid-column: 2;
+  margin: 0;
+  font-size: 0.76rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.form-summary code {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--gold);
+}
+
+.form-summary--error {
+  border-color: rgba(242, 118, 110, 0.5);
+  background: var(--error-bg);
+}
+
+.form-summary--error .form-summary__icon {
+  color: var(--error);
+}
+
+.form-live-status {
+  margin-top: var(--space-3);
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}

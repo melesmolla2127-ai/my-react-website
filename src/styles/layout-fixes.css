@@ -1,0 +1,103 @@
+/* ============================================================
+   LAYOUT FIXES — section header order, RTL, collapsed spacing
+   ============================================================ */
+
+/* Headers render the numbered eyebrow strip inside the same container as
+   the title row, so the strip is a flex column child in document order. */
+.section-top {
+  margin-block-start: 0;
+}
+
+/* Explicit label spacing: these are never flowing paragraphs. */
+.hero-kicker,
+.hero-greeting,
+.hero-side-note,
+.hero-bottom,
+.role-line,
+.portrait-caption,
+.floating-note,
+.visual-index,
+.section-aside,
+.stat-number,
+.stat-label,
+.project-meta,
+.project-actions,
+.project-desc,
+.journal-meta,
+.journal-desc,
+.availability-heading,
+.availability-weeks,
+.timeline-date,
+.timeline-type,
+.timeline-content h4,
+.timeline-content p,
+.timeline-content ul,
+.footer-label,
+.footer-bottom,
+.footer-top > p,
+.skill-foot,
+.edu-year,
+.carousel-index,
+.service-number,
+.quote-note,
+.eyebrow,
+.mono-label,
+.newsletter-note,
+.contact-detail {
+  margin-block-end: 0;
+}
+
+/* The footer's contact column owns its two action links. */
+.footer-contact-links {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-block-start: var(--space-2);
+}
+
+/* RTL: mirrored details that cannot be handled by logical properties. */
+:root[dir="rtl"] .nav-link::after,
+:root[dir="rtl"] .scroll-progress {
+  transform-origin: right center;
+}
+
+:root[dir="rtl"] .back-to-top__value {
+  transform: scaleX(-1);
+  transform-origin: center;
+}
+
+:root[dir="rtl"] .skill-track > span {
+  transform-origin: right center;
+}
+
+:root[dir="rtl"] .timeline::before {
+  right: 190px;
+  left: auto;
+}
+
+:root[dir="rtl"] .timeline-dot {
+  right: 185px;
+  left: auto;
+}
+
+:root[dir="rtl"] .footer-column a:hover {
+  transform: translateX(-3px);
+}
+
+:root[dir="rtl"] .text-link:hover,
+:root[dir="rtl"] .project-actions a:hover,
+:root[dir="rtl"] .project-actions button:hover {
+  gap: 13px;
+}
+
+@media (max-width: 620px) {
+  :root[dir="rtl"] .timeline::before {
+    right: 5px;
+    left: auto;
+  }
+
+  :root[dir="rtl"] .timeline-dot {
+    right: 0;
+    left: auto;
+  }
+}
